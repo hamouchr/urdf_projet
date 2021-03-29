@@ -1,0 +1,69 @@
+
+
+
+## Lancement 
+> roslaunch urdf_tutorial display.launch model:=robot_1.urdf
+ 
+> roslaunch urdf_tutorial display.launch model:=`rospack find urdf_projet`/urdf/robot_1.urdf
+
+
+## langage URDF Geometry
+
+Robot : 
+
+<?xml version="1.0"?>
+<robot name="test_robot">
+
+ <material name="blue">
+        <color rgba="0 0 0.8 1"/>
+ </material>
+
+<link name="base_link"/>
+  
+<joint name="body_joint" type="fixed"> 
+    <parent link="base_link"/>
+    <child  link="body_link"/>
+    ## origin du joint / parent
+    <origin xyz="0 -0.22 0.25"/>
+</joint>
+
+
+<link name="body_link">
+
+<visual>
+      <geometry>
+        <box size="0.3 0.3 0.2"/>
+        <cylinder length="0.6" radius="0.2"/>
+        <sphere radius="0.2"/>
+      </geometry>
+      <geometry>
+          <mesh filename="package://urdf_tutorial/meshes/l_finger.dae"/>
+      </geometry>
+      
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      
+
+      <material name="red">
+        <color rgba="1.0 0.0 0.0 2.0"/>
+      </material>
+      <material name="blue"/>
+
+ </visual>
+ 
+</link>
+
+</robot>
+
+
+## langage URDF Movable
+
+  <joint name="head_swivel" type="continuous">
+##  we want it to go around the z axis, we specify the vector "0 0 1".
+    <axis xyz="0 0 1"/>
+## inclure l'étiquette de limite spécifiant les limites supérieure et inférieure du
+## joint (en radians). Nous devons également spécifier une vitesse et un effort maximum pour cette articulation,     
+     <limit  effort = "1000.0"  lower = "0.0"  upper = "0.548"  velocity = "0.5" /> 
+    <limit  effort = "1000.0"  lower = "-0.38"  upper = "0"  velocity = "0.5" /> 
+  </joint>
+
+

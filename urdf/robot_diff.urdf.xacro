@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<robot name="robot_diff" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find urdf_projet)/urdf/robot_diff.gazebo.xacro"/>
+
+   
+</robot>

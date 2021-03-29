@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Simulate robot in gazebo: To load our robot into the empty world  -->
+<launch>
+  
+<param name="robot_description" command="$(find xacro)/xacro.py '$(find urdf_projet)/urdf/robot_diff.urdf.xacro'" />
+ <!--
+ <param name="robot_description" textfile="$(find urdf_projet)/urdf/robot_tb3.urdf" />
+ -->  
+    <arg name="x" default="2"/>
+    <arg name="y" default="2"/>
+    <arg name="z" default="0"/>
+
+   <!--
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+     <arg name="gui" value="false" />
+    </include>
+    -->
+    <node name="mybot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+          args="-urdf -param robot_description -model tb3 -x $(arg x) -y $(arg y) -z $(arg z)" />
+
+</launch>
